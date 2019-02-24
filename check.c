@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusev <agusev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 13:34:14 by agusev           ###   ########.fr       */
+/*   Updated: 2019/02/24 13:36:49 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		check_tetrimino(char **tetrimino)
 {
-	return (1);
+	return (tetrimino == 0 ? 1 : 1);
 }

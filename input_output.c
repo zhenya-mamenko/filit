@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:44:24 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 13:29:25 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 13:35:45 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ void	proceed_input(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		error(NULL);
-	read_lines(av[1]);
+	read_lines(fd);
 
-
-/*	g_tetrs[0].id = 'A';
+	g_tetrs[0].id = 'A';
 	g_tetrs[0].p[0].x = 0;
 	g_tetrs[0].p[0].y = 0;
 	g_tetrs[0].p[1].x = 0;
@@ -184,5 +183,4 @@ void	proceed_input(int ac, char **av)
 	g_tetrs[7].height = 2;
 	g_tetrs[7].width = 3;
 	g_tcount = 8;
-	*/
 }
