@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:36:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/22 16:31:15 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 13:17:07 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
-# include "get_next_line.h"
 
 typedef struct	s_coords
 {
@@ -38,10 +37,11 @@ typedef struct	s_square
 t_tetremino		g_tetrs[26];
 int				g_tcount;
 
-void			error(void);
+void			error(void *p);
 void			success(t_square s, int n);
 void			proceed_input(int ac, char **av);
 int				calc_min_size(void);
 void			init_square(t_square *s);
+int				check_tetrimino(char **tetrimino);
 
 #endif
