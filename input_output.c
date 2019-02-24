@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:44:24 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 13:17:10 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 13:29:25 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,14 @@ int		check_chars(char *line)
 	return (1);
 }
 
-void	read_lines(char )
-
-void	proceed_input(int ac, char **av)
+void	read_lines(int fd)
 {
 	int		ret;
 	char	*line;
 	char	*tetrimino[4];
-	int		fd;
 	int		i;
 
-	if (ac != 2)
-	{
-		ft_putstr("usage: tetriminos_list_file\n");
-		exit(2);
-	}
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		error(NULL);
 	i = 0;
-	g_tcount = 0;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (ft_strlen(line) != 4 || check_chars(line) != 1)
@@ -81,12 +69,31 @@ void	proceed_input(int ac, char **av)
 		{
 			i = 0;
 			if (((ret = get_next_line(fd, &line)) > 0 &&
-				ft_strlen(line) != 0) || ret == -1)
+				ft_strlen(line) != 0) || ret == -1 ||
+				check_tetrimino(tetrimino) != 1)
 				error(line);
+			free(line);
 		}
 	}
 	if (ret == -1 || i != 0)
-		error (line);
+		error(line);
+}
+
+void	proceed_input(int ac, char **av)
+{
+	int		fd;
+
+	if (ac != 2)
+	{
+		ft_putstr("usage: fillit tetriminos_list_file\n");
+		exit(2);
+	}
+	g_tcount = 0;
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		error(NULL);
+	read_lines(av[1]);
+
 
 /*	g_tetrs[0].id = 'A';
 	g_tetrs[0].p[0].x = 0;
