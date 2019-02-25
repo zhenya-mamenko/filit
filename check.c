@@ -6,7 +6,7 @@
 /*   By: agusev <agusev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 20:48:00 by agusev           ###   ########.fr       */
+/*   Updated: 2019/02/24 20:57:47 by agusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,25 @@
 
 void	calc_bounds(void)
 {
-	int		x_min;
-	int		y_min;
-	int		x_max;
-	int		y_max;
-	int		i;
-	int		j;
+	t_coords	min;
+	t_coords	max;
+	int			i;
 
-	x_min = 0;
-	y_min = 0;
-	x_max = 0;
-	y_max = 0;
+	min.x = 10;
+	min.y = 10;
+	max.x = -10;
+	max.y = -10;
 	i = 0;
-	j = 0;
 	while (i++ < 4)
 	{
-		if (tetrimino[i][j] == '#')
-			x_min = i;
-		if (tetrimino[i][j] == '#' && tetrimino[i + 1][j] != '#')
-			x_max = i;
-	}
-	while (j++ < 4)
-	{
-		if (tetrimino[i][j] == '#')
-			y_min = j;
-		if (tetrimino[i][j] == '#' && tetrimino[i][j + 1] != '#')
-			x_max = i;
+		if (g_tetrs[g_tcount].p[i].x > max.x)
+			max.x = g_tetrs[g_tcount].p[i].x;
+		if (g_tetrs[g_tcount].p[i].x < min.x)
+			min.x = g_tetrs[g_tcount].p[i].x;
+		if (g_tetrs[g_tcount].p[i].y > max.y)
+			max.y = g_tetrs[g_tcount].p[i].y;
+		if (g_tetrs[g_tcount].p[i].y < min.y)
+			min.y = g_tetrs[g_tcount].p[i].y;
 	}
 	g_tetrs[g_tcount].height = y_max - y_min;
 	g_tetrs[g_tcount].width = x_max - x_min;
