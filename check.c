@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 22:22:54 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:32:53 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int		check_tetrimino(char **tetrimino)
 			}
 		}
 	}
-	return (((count_con != 6 && count_con != 8) || count_hash != 4) ? 0 : 1);
+	return (((count_con != 6 && count_con != 8) || count_hash != 4) ||
+		g_tcount == 26 ? 0 : 1);
 }
