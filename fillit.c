@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:36:10 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 21:25:35 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 22:27:36 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int		check_tetr(t_tetremino t, t_coords p, int n, t_square *s)
 	int			k;
 	int			i;
 
-	k = 0;
-	if (p.x + t.width <= n && p.y + t.height <= n)
-		while (k < 4)
+	k = -1;
+	if (p.x + t.max.x <= n && p.y + t.max.y <= n &&
+		p.x + t.min.x >= 0 && p.y + t.min.y >= 0)
+		while (++k < 4)
 		{
 			c = t.p[k];
 			if (c.x + p.x < 0 || c.x + p.x >= n ||
@@ -29,7 +30,6 @@ int		check_tetr(t_tetremino t, t_coords p, int n, t_square *s)
 				break ;
 			else
 				s->c[c.y + p.y][c.x + p.x] = t.id;
-			k += 1;
 		}
 	i = -1;
 	if (k != 4)

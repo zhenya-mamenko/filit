@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 13:00:50 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 20:55:06 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 22:26:08 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int		calc_min_size(void)
 	i = 0;
 	while (i < g_tcount)
 	{
-		if (result < g_tetrs[i].width)
-			result = g_tetrs[i].width;
-		else if (result < g_tetrs[i].height)
-			result = g_tetrs[i].height;
+		if (result < (g_tetrs[i].max.x - g_tetrs[i].min.x + 1))
+			result = (g_tetrs[i].max.x - g_tetrs[i].min.x + 1);
+		else if (result < (g_tetrs[i].max.y - g_tetrs[i].min.y + 1))
+			result = (g_tetrs[i].max.y - g_tetrs[i].min.y + 1);
 		i++;
 	}
 	return (result);

@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:36:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 21:04:30 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 22:22:33 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 
 typedef struct	s_coords
 {
-	char		x;
-	char		y;
+	int		x;
+	int		y;
 }				t_coords;
 
 typedef struct	s_tetremino
 {
 	char		id;
 	t_coords	p[4];
-	int			height;
-	int			width;
+	t_coords	min;
+	t_coords	max;
 }				t_tetremino;
 
 typedef struct	s_square
@@ -43,6 +43,6 @@ void			proceed_input(int ac, char **av);
 int				calc_min_size(void);
 void			init_square(t_square *s);
 int				check_tetrimino(char **tetrimino);
-void			make_tetrimino(char **tetrimino);
+void			make_tetrimino(char **tetrimino, char **line);
 
 #endif

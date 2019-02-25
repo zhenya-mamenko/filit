@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 21:16:48 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 22:22:54 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_tetrimino(char **tetrimino)
 	}
 }
 
-void	calc_bounds(char **tetrimino)
+void	calc_bounds(char **tetrimino, char **line)
 {
 	t_coords	min;
 	t_coords	max;
@@ -46,12 +46,13 @@ void	calc_bounds(char **tetrimino)
 		if (g_tetrs[g_tcount].p[i].y < min.y)
 			min.y = g_tetrs[g_tcount].p[i].y;
 	}
-	g_tetrs[g_tcount].height = max.y - min.y;
-	g_tetrs[g_tcount].width = max.x - min.x;
+	g_tetrs[g_tcount].min = min;
+	g_tetrs[g_tcount].max = max;
 	free_tetrimino(tetrimino);
+	ft_strdel(line);
 }
 
-void	make_tetrimino(char **tetrimino)
+void	make_tetrimino(char **tetrimino, char **line)
 {
 	int			i;
 	int			j;
@@ -76,7 +77,7 @@ void	make_tetrimino(char **tetrimino)
 				g_tetrs[g_tcount].p[k].y = i - c.y;
 			}
 	}
-	calc_bounds(tetrimino);
+	calc_bounds(tetrimino, line);
 	g_tcount += 1;
 }
 

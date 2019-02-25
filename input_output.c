@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:44:24 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 21:04:49 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 22:05:51 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ void	read_lines(int fd)
 				ft_strlen(line) != 0) || ret == -1 ||
 				check_tetrimino(tetrimino) != 1)
 				error(line);
-			make_tetrimino(tetrimino);
-			free(line);
+			make_tetrimino(tetrimino, &line);
+			if (ret == 0)
+				break ;
 		}
 	}
-	if (ret == -1 || i != 0)
+	if (ret == -1 || i != 0 || g_tcount == 0 || line != NULL)
 		error(line);
 }
 
