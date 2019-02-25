@@ -6,11 +6,37 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 10:36:10 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 22:27:36 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/24 23:05:05 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int		calc_min_size(void)
+{
+	int		result;
+	int		i;
+
+	result = g_tcount * 4 / 2 + 1;
+	while (result > 0)
+	{
+		if ((result * result) < (g_tcount * 4))
+			break ;
+		else
+			result--;
+	}
+	result++;
+	i = 0;
+	while (i < g_tcount)
+	{
+		if (result < (g_tetrs[i].max.x - g_tetrs[i].min.x + 1))
+			result = (g_tetrs[i].max.x - g_tetrs[i].min.x + 1);
+		else if (result < (g_tetrs[i].max.y - g_tetrs[i].min.y + 1))
+			result = (g_tetrs[i].max.y - g_tetrs[i].min.y + 1);
+		i++;
+	}
+	return (result);
+}
 
 int		check_tetr(t_tetremino t, t_coords p, int n, t_square *s)
 {
@@ -73,8 +99,21 @@ void	start(void)
 {
 	int			min_size;
 	t_square	s;
+	int			i;
+	int			j;
 
-	init_square(&s);
+	i = 0;
+	while (i < 12)
+	{
+		j = 0;
+		while (j < 12)
+		{
+			s.c[i][j] = '.';
+			j++;
+		}
+		s.c[i][j] = '\0';
+		i++;
+	}
 	min_size = calc_min_size();
 	while (min_size < 20)
 	{
