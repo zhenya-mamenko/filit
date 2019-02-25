@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusev <agusev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 18:56:03 by agusev           ###   ########.fr       */
+/*   Updated: 2019/02/24 18:59:28 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ int		check_tetrimino(char **tetrimino)
 	int		count_hash;
 	int		i;
 	int		j;
-	char	c;
 
 	i = -1;
 	count_con = 0;
-	count_con = 0;
+	count_hash = 0;
 	while (++i < 4)
 	{
 		j = -1;
