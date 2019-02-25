@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusev <agusev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 13:15:17 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/24 20:57:47 by agusev           ###   ########.fr       */
+/*   Updated: 2019/02/24 21:16:48 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	calc_bounds(void)
+void	free_tetrimino(char **tetrimino)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		ft_strdel(&tetrimino[i]);
+		i += 1;
+	}
+}
+
+void	calc_bounds(char **tetrimino)
 {
 	t_coords	min;
 	t_coords	max;
@@ -34,8 +46,9 @@ void	calc_bounds(void)
 		if (g_tetrs[g_tcount].p[i].y < min.y)
 			min.y = g_tetrs[g_tcount].p[i].y;
 	}
-	g_tetrs[g_tcount].height = y_max - y_min;
-	g_tetrs[g_tcount].width = x_max - x_min;
+	g_tetrs[g_tcount].height = max.y - min.y;
+	g_tetrs[g_tcount].width = max.x - min.x;
+	free_tetrimino(tetrimino);
 }
 
 void	make_tetrimino(char **tetrimino)
@@ -47,14 +60,14 @@ void	make_tetrimino(char **tetrimino)
 
 	g_tetrs[g_tcount].id = 'A' + g_tcount;
 	i = -1;
-	k = 0;
+	k = -1;
 	while (++i < 4)
 	{
 		j = -1;
 		while (++j < 4)
 			if (tetrimino[i][j] == '#')
 			{
-				if (k++ == 0)
+				if (++k == 0)
 				{
 					c.x = j;
 					c.y = i;
@@ -63,7 +76,7 @@ void	make_tetrimino(char **tetrimino)
 				g_tetrs[g_tcount].p[k].y = i - c.y;
 			}
 	}
-	calc_bounds();
+	calc_bounds(tetrimino);
 	g_tcount += 1;
 }
 
